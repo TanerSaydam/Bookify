@@ -1,7 +1,10 @@
-﻿namespace Bookify.Api.Controllers.Bookings;
+﻿using Bookify.Domain.Apartments;
+using Bookify.Domain.Users;
+
+namespace Bookify.Api.Controllers.Bookings;
 
 public sealed record ReserveBookingRequest(
-    Guid ApartmentId,
-    Guid UserId,
+    ApartmentId ApartmentId,
+    UserId UserId,
     DateOnly StartDate,
     DateOnly EndDate);
