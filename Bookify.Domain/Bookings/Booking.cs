@@ -28,6 +28,8 @@ public sealed class Booking : Entity
         CreatedOnUtc = createdOnUtc;
     }
 
+    private Booking() { }
+
     public Guid ApartmentId { get; private set; }
     public Guid UserId { get; private set; }
     public DateRange Duration { get; private set; }
@@ -126,7 +128,7 @@ public sealed class Booking : Entity
 
         var currentDate = DateOnly.FromDateTime(utcNow);
 
-        if(currentDate > Duration.Start)
+        if (currentDate > Duration.Start)
         {
             return Result.Failure(BookingErrors.AlreadyStarted);
         }

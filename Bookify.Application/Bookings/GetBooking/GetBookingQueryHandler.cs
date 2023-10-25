@@ -19,22 +19,23 @@ internal sealed class GetBookingQueryHandler : IQueryHandler<GetBookingQuery, Bo
 
         const string sql = """
                            SELECT
-                                Id,
-                                UserId,
-                                Status,
-                                Price_Amount as PriceAmount,
-                                Price_Currency as PriceCurrency,
-                                CleaningFee_Amount as CleaningFeeAmount,
-                                CleaningFee_Currency as CleaningFeeCurrency,
-                                AmenitiesUpCharge_Amount as AmenitiesUpChargeAmount,
-                                AmenityUpCharge_Currency as AmenitiesUpChargeCurrency,
-                                TotalPrice_Amount as TotalPriceAmount,
-                                TotalPrice_Currency as TotalPriceCurrency,
-                                DurationStart,
-                                DurationEnd,
-                                CreatedOnUtc
-                           FROM Bookings
-                           WHERE Id = @BookingId
+                               id AS Id,
+                               apartment_id AS ApartmentId,
+                               user_id AS UserId,
+                               status AS Status,
+                               price_for_period_amount AS PriceAmount,
+                               price_for_period_currency AS PriceCurrency,
+                               cleaning_fee_amount AS CleaningFeeAmount,
+                               cleaning_fee_currency AS CleaningFeeCurrency,
+                               amenities_up_charge_amount AS AmenitiesUpChargeAmount,
+                               amenities_up_charge_currency AS AmenitiesUpChargeCurrency,
+                               total_price_amount AS TotalPriceAmount,
+                               total_price_currency AS TotalPriceCurrency,
+                               duration_start AS DurationStart,
+                               duration_end AS DurationEnd,
+                               created_on_utc AS CreatedOnUtc
+                           FROM bookings
+                           WHERE id = @BookingId
                            """;
 
         var booking = await connection.QueryFirstOrDefaultAsync<BookingResponse>(

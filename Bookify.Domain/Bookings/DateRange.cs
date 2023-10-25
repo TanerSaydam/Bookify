@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ public sealed record DateRange
     {
         
     }
-
+    
     public DateOnly Start { get; init; }
     public DateOnly End { get; init; }
     public int LengthInDays => End.DayNumber - Start.DayNumber;

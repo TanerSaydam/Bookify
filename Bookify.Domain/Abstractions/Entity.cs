@@ -6,6 +6,9 @@ public abstract class Entity
     {
         Id = id;
     }
+
+    protected Entity() { }
+
     public Guid Id { get; init; }
 
     public override bool Equals(object obj)

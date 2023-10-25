@@ -34,26 +34,26 @@ private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
         const string sql = """
                            SELECT
-                                a.Id,
-                                a.Name,
-                                a.Description,
-                                a.Price_Amount as PriceAmount,
-                                a.Price_Currency as PriceCurrency,
-                                a.Address_Country as Country,
-                                a.Address_City as City,
-                                a.Address_State as State,
-                                a.Address_ZipCode as ZipCode,
-                                a.Address_Street as Street,
-                           FROM Apartments AS a
+                               a.id AS Id,
+                               a.name AS Name,
+                               a.description AS Description,
+                               a.price_amount AS Price,
+                               a.price_currency AS Currency,
+                               a.address_country AS Country,
+                               a.address_state AS State,
+                               a.address_zip_code AS ZipCode,
+                               a.address_city AS City,
+                               a.address_street AS Street
+                           FROM apartments AS a
                            WHERE NOT EXISTS
                            (
-                                SELECT 1
-                                FROM Bookings as b
-                                WHERE
-                                    b.ApartmentId = a.Id AND
-                                    b.DurationStart <= @EndDate AND
-                                    b.DurationEnd >= @StartDate
-                                    b.Status = ANY(@ActiveBookingStatuses)
+                               SELECT 1
+                               FROM bookings AS b
+                               WHERE
+                                   b.apartment_id = a.id AND
+                                   b.duration_start <= @EndDate AND
+                                   b.duration_end >= @StartDate AND
+                                   b.status = ANY(@ActiveBookingStatuses)
                            )
                            """;
         var apartments = await connection
